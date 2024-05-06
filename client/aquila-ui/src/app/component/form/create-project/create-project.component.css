@@ -1,0 +1,62 @@
+.btn {
+    font-weight: bold;
+    border: .1rem solid transparent;
+}
+
+.fill-btn {
+    color: rgb(255, 255, 255);
+    background-color: rgb(86, 71, 235);
+    border-color: rgb(86, 71, 235);
+}
+
+.fill-btn:hover {
+    background-color: rgb(75, 62, 214);
+    border-color: rgb(75, 62, 214);
+}
+
+.border-btn {
+    color: rgb(86, 71, 235);
+    background-color: rgb(255, 255, 255);
+    border-color: rgb(86, 71, 235);
+}
+
+.border-btn:hover {
+    color: rgb(75, 62, 214);
+    border-color: rgb(75, 62, 214);
+}
+
+.rotate {
+    animation: rotate_animate 100ms linear;
+    transform: rotate(180deg)
+}
+
+@keyframes rotate_animate {
+    0% {
+        transform: rotate(0deg)
+    }
+    50% {
+        transform: rotate(90deg)
+    }
+
+    100% {
+        transform: rotate(180deg)
+    }
+}
+
+.normal {
+    animation: normal_animate 100ms linear;
+    transform: rotate(0deg)
+}
+
+@keyframes normal_animate {
+    0% {
+        transform: rotate(180deg)
+    }
+    50% {
+        transform: rotate(90deg)
+    }
+
+    100% {
+        transform: rotate(0deg)
+    }
+}

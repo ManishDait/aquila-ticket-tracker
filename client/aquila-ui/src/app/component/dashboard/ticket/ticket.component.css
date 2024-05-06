@@ -1,0 +1,36 @@
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.table th.title-col {
+    width: 40%;
+}
+
+.table th {
+    background-color: rgb(250,250,252);
+}
+
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+}
+
+.border-btn {
+    border: .1rem solid rgb(219, 219, 219);
+    color: rgb(34, 34, 34);
+}
+
+.border-btn-active {
+    color: rgb(86, 71, 235);
+    background-color: rgb(255, 255, 255);
+    border-color: rgb(86, 71, 235);
+}
+
+@media screen and (max-width: 620px) {
+    @media screen and (max-width: 620px) {
+        .menu-toggle {
+            display: block;
+        }
+    }
+}

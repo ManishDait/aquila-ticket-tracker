@@ -1,0 +1,136 @@
+<div class="d-flex align-items-center justify-content-start gap-4">
+    <fa-icon [icon] ="faMenu" class="menu-toggle text-secondary" style="font-size: 1.5rem;" (click)="toggleNavbar()"></fa-icon>
+    <h4 class="m-0">Home</h4>
+</div>
+
+<div class="card py-1 mt-3 border-0">
+    <h6 class="m-0">Recently Assigned</h6>
+
+    <div style="overflow-x: auto;">
+        @if (assignTicket.length > 0) {
+            <table class="table border mt-2">
+                <thead>
+                  <tr>
+                    <th class="p-1 text-secondary"><small>Status</small></th>
+                    <th class="p-1 text-secondary"><small>Project</small></th>
+                    <th class="p-1 text-secondary title-col"><small>Title</small></th>
+                    <th class="p-1 text-secondary"><small>priority</small></th>
+                    <th class="p-1 text-secondary"><small>createdAt</small></th>
+                    <th class="p-1 text-secondary"><small>updatedAt</small></th>
+                    <th class="p-1 text-secondary"><small>reportedBy</small></th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                    @for (ticket of assignTicket.slice(-3).reverse(); track ticket) {
+                        @if (!(ticket.status == 'RESOLVE') && !(ticket.status == 'CLOSED')) {
+                            <tr style="cursor: pointer;" (click)="viewTicket(ticket)">
+                                <td><fa-icon [icon]="faStatus" [ngClass]="{'text-warning': ticket.status == 'OPEN', 'text-primary': ticket.status == 'IN_PROGRESS', 'text-success': ticket.status == 'RESOLVE', 'text-secondary': ticket.status == 'CLOSED'}"  style="font-size: 1.3rem;"></fa-icon></td>
+                                <td class="text-secondary">{{ ticket.projectCode }}</td>
+                                <td>{{ ticket.title }}</td>
+                                <td><fa-icon [icon]="faPriority" [ngClass]="{'text-success': ticket.priority == 'LOW', 'text-warning': ticket.priority == 'MEDIUM', 'text-danger': ticket.priority == 'HIGH'}" style="font-size: .6rem;"></fa-icon></td>
+                                <td>{{ ticket!.createdAt }}</td>
+                                <td>{{ ticket!.updatedAt }}</td>
+                                <td>{{ ticket.reportedBy!.name }}</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        }
+
+        @if (assignTicket.length == 0) {
+            <div class="d-flex align-items-center justify-content-center border mt-2">
+                <h3 class="m-0 text-secondary">-</h3>
+            </div>
+        }
+    </div>
+</div>
+
+<div class="card py-1 mt-3 border-0">
+    <h6 class="m-0">Recently Created</h6>
+
+    <div style="overflow-x: auto;">
+        @if (tickets.length > 0) {
+            <table class="table border mt-2">
+                <thead>
+                  <tr>
+                    <th class="p-1 text-secondary"><small>Status</small></th>
+                    <th class="p-1 text-secondary"><small>Project</small></th>
+                    <th class="p-1 text-secondary title-col"><small>Title</small></th>
+                    <th class="p-1 text-secondary"><small>priority</small></th>
+                    <th class="p-1 text-secondary"><small>createdAt</small></th>
+                    <th class="p-1 text-secondary"><small>updatedAt</small></th>
+                    <th class="p-1 text-secondary"><small>reportedBy</small></th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                    @for (ticket of tickets.slice(-3).reverse(); track ticket) {
+                        <tr style="cursor: pointer;" (click)="viewTicket(ticket)">
+                            <td><fa-icon [icon]="faStatus" [ngClass]="{'text-warning': ticket.status == 'OPEN', 'text-primary': ticket.status == 'IN_PROGRESS', 'text-success': ticket.status == 'RESOLVE', 'text-secondary': ticket.status == 'CLOSED'}"  style="font-size: 1.3rem;"></fa-icon></td>
+                            <td class="text-secondary">{{ ticket.projectCode }}</td>
+                            <td>{{ ticket.title }}</td>
+                            <td><fa-icon [icon]="faPriority" [ngClass]="{'text-success': ticket.priority == 'LOW', 'text-warning': ticket.priority == 'MEDIUM', 'text-danger': ticket.priority == 'HIGH'}" style="font-size: .6rem;"></fa-icon></td>
+                            <td>{{ ticket!.createdAt }}</td>
+                            <td>{{ ticket!.updatedAt }}</td>
+                            <td>{{ ticket.reportedBy!.name }}</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+
+        @if (tickets.length == 0) {
+            <div class="d-flex align-items-center justify-content-center border mt-2">
+                <h3 class="m-0 text-secondary">-</h3>
+            </div>
+        }
+    </div>
+</div>
+
+<div class="card py-1 mt-3 border-0">
+    <h6 class="m-0">Recently Completed</h6>
+
+    <div style="overflow-x: auto;">
+        @if (completedTickets.length > 0) {
+            <table class="table border mt-2">
+                <thead>
+                  <tr>
+                    <th class="p-1 text-secondary"><small>Status</small></th>
+                    <th class="p-1 text-secondary"><small>Project</small></th>
+                    <th class="p-1 text-secondary title-col"><small>Title</small></th>
+                    <th class="p-1 text-secondary"><small>priority</small></th>
+                    <th class="p-1 text-secondary"><small>createdAt</small></th>
+                    <th class="p-1 text-secondary"><small>updatedAt</small></th>
+                    <th class="p-1 text-secondary"><small>reportedBy</small></th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                    @for (ticket of completedTickets.slice(-3).reverse(); track ticket) {
+                        @if (ticket.status == 'RESOLVE' || ticket.status == 'CLOSED') {
+                            <tr style="cursor: pointer;" (click)="viewTicket(ticket)">
+                                <td><fa-icon [icon]="faStatus" [ngClass]="{'text-success': ticket.status == 'RESOLVE', 'text-secondary': ticket.status == 'CLOSED'}"  style="font-size: 1.3rem;"></fa-icon></td>
+                                <td class="text-secondary">{{ ticket.projectCode }}</td>
+                                <td>{{ ticket.title }}</td>
+                                <td><fa-icon [icon]="faPriority" [ngClass]="{'text-success': ticket.priority == 'LOW', 'text-warning': ticket.priority == 'MEDIUM', 'text-danger': ticket.priority == 'HIGH'}" style="font-size: .6rem;"></fa-icon></td>
+                                <td>{{ ticket!.createdAt }}</td>
+                                <td>{{ ticket!.updatedAt }}</td>
+                                <td>{{ ticket.reportedBy!.name }}</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        }
+
+        @if (completedTickets.length == 0) {
+            <div class="d-flex align-items-center justify-content-center border mt-2">
+                <h3 class="m-0 text-secondary">-</h3>
+            </div>
+        }
+    </div>
+</div>
+    
+

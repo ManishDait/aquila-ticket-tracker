@@ -1,0 +1,62 @@
+@if (createTicket) {
+    <app-create-ticket></app-create-ticket>
+}
+
+@if (editProject) {
+    <app-edit-project [project]="project"></app-edit-project>
+}
+
+@if (manageUser) {
+    <app-project-user-management [project]="project"></app-project-user-management>
+}
+
+<div class="div d-flex flex-column p-2">
+    <h4>{{ project.name }}</h4>
+    <p class="m-0 text-secondary" style="font-weight: bold;">Description</p>
+    <p>{{ project.description }}</p>
+
+    <div class="d-flex gap-2">
+        <button type="button" class="btn border-btn" (click)="manageUser = true">Manage Members</button>
+        <button type="button" class="btn border-btn" (click)="editProject = true">Edit Project</button>
+    </div>
+
+    <div class="mt-2">
+        <button type="button" class="btn border-btn" (click)="createTicket = true">Create Ticket</button>
+
+        <div style="overflow-x: auto;">
+            <table class="table border mt-2">
+                <thead>
+                  <tr>
+                    <th class="p-1 text-secondary"><small>Status</small></th>
+                    <th class="p-1 text-secondary title-col"><small>Title</small></th>
+                    <th class="p-1 text-secondary"><small>priority</small></th>
+                    <th class="p-1 text-secondary"><small>createdAt</small></th>
+                    <th class="p-1 text-secondary"><small>updatedAt</small></th>
+                    <th class="p-1 text-secondary"><small>reportedBy</small></th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                    @if (tickets.length == 0) {
+                        <tr style="cursor: pointer;">
+                            <td colspan="6">
+                                <h3 class="m-0 text-secondary text-center">-</h3>
+                            </td>
+                        </tr>
+                    }
+
+                    @for (ticket of tickets; track ticket) {
+                        <tr (click)="viewTicket(ticket)" style="cursor: pointer;">
+                            <td><fa-icon [icon]="faStatus" [ngClass]="{'text-warning': ticket.status == 'OPEN', 'text-primary': ticket.status == 'IN_PROGRESS', 'text-success': ticket.status == 'RESOLVE', 'text-secondary': ticket.status == 'CLOSED'}"  style="font-size: 1.3rem;"></fa-icon></td>
+                            <td>{{ ticket.title }}</td>
+                            <td><fa-icon [icon]="faPriority" [ngClass]="{'text-success': ticket.priority == 'LOW', 'text-warning': ticket.priority == 'MEDIUM', 'text-danger': ticket.priority == 'HIGH'}" style="font-size: .6rem;"></fa-icon></td>
+                            <td>{{ ticket.createdAt }}</td>
+                            <td>{{ ticket.updatedAt }}</td>
+                            <td>{{ ticket.reportedBy!.name }}</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

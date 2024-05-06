@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/aquila
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: password
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+
+    hibernate:
+      ddl-auto: update
+
+    show-sql: true
+
+  mail:
+    host: 127.0.0.1
+    port: 1025

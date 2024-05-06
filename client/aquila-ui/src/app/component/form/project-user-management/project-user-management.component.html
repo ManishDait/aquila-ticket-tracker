@@ -1,0 +1,28 @@
+<div class="position-fixed w-100 h-100 d-flex align-items-center justify-content-center" style="z-index: 2; background-color: rgba(0, 0, 0, 0.151);">
+    <div class="card border-0 p-3" style="min-width: 80%; max-width: 750px;">
+        <h5>Manage User</h5>
+        <form (ngSubmit)="onSubmit()">
+            <div class="form-group mt-2">
+                <label for="members">Members</label>
+                <div class="form-control d-flex align-items-center justify-content-start gap-2" id="members">
+                    @for (user of project.teamMembers; track user) {
+                        <div class="badge py-2" style="background-color: rgb(86, 71, 235);">
+                            <p class="m-0">{{ user.name }}</p>
+                        </div>
+                    }
+                </div>
+
+                <ul class="list-group mt-1">
+                    @for (user of users; track user) {
+                        @if (!isAssigned(user)) {
+                            <li class="list-group-item" style="cursor: pointer;" (click)="addAssignee(user)">{{ user.name }}</li>
+                        }
+                    }
+                </ul>
+            </div>
+
+            <button type="submit" class="btn btn-sm fill-btn mt-3 me-2">Save</button>
+            <button type="button" class="btn btn-sm border-btn mt-3" (click)="cancel()">Cancel</button>
+          </form>
+    </div>
+</div>

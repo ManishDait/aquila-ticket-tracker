@@ -1,0 +1,52 @@
+@if (manageUser) {
+  <div class="d-flex vh-100 vw-100" style="position: absolute; top: 0; left: 0; z-index: 2;">
+    <app-create-user></app-create-user>
+  </div>
+}
+
+@if (editUser) {
+  <div class="d-flex vh-100 vw-100" style="position: absolute; top: 0; left: 0; z-index: 2;">
+    <app-edit-user [user]="selectedUser"></app-edit-user>
+  </div>
+}
+    
+<div class="d-flex px-2 align-items-center justify-content-start gap-4">
+    <fa-icon [icon] ="faMenu" class="menu-toggle text-secondary" style="font-size: 1.5rem;" (click)="toggleNavbar()"></fa-icon>
+    <h4 class="m-0">Members<span class="text-secondary">({{ users.length }})</span></h4>
+</div>
+
+<div class="card py-1 mt-2 border-0" style="overflow-x: auto;">
+    <div>
+      <button class="btn border-btn width" (click)="manageUser = true">Add Member</button>
+    </div>
+
+    <table class="table border mt-2">
+        <thead>
+          <tr>
+            <th class="p-1">Account</th>
+            <th class="p-1 title-col">Role</th>
+            <th class="p-1 text-secondary"><small></small></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @for(user of users; track user) {
+            <tr>
+              <td>
+                <div class="d-flex gap-2">
+                  <p class="m-0">{{ user.name }}</p>
+                  <div class="d-flex align-items-center justify-content-center" style="border-radius: 2rem;" [ngStyle]="{'background-color': (user.enabled? '#7bff2f6e':'#ffa52f6e')}">
+                    <p class="m-0 px-3" style="font-size: .8rem;">{{user.enabled? 'enabled': 'disabled'}}</p>
+                  </div>
+                </div>
+              </td>
+              <td>{{ user.role }}</td>
+              <td style="text-align: end;" class="px-3">
+                <fa-icon [icon]="faEdit" class="text-secondary" style="margin-right: 1rem; cursor: pointer; font-size: .8rem;" (click)="edit(user)"></fa-icon>
+              </td>
+            </tr>
+          }
+        </tbody>
+    </table>
+</div>
+

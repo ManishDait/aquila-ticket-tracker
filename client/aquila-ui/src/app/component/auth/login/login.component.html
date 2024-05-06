@@ -1,0 +1,32 @@
+<div class="d-flex align-items-center h-100 main-window">
+    <div class="d-flex align-items-center flex-column justify-content-center side-nav">
+        <h1 class="text-light text-center">Aquila Ticket Tracker</h1>
+        <h4 class="text-light text-center">Track Issues with Ease</h4>
+    </div>
+  
+    <div class="p-3 d-flex align-items-center justify-content-center form-div">
+        <div class="card w-100 border-0">
+            <div>
+                <h5 class="m-0">Login</h5>
+                <small class="mt-1 text-secondary">Hello! Welcome back, Login with your Username and Password.</small>
+            </div>
+            
+            <div class="form-container mt-3">
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">  
+                    <div class="form-group mb-1">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control" id="username" placeholder="Username" formControlName="username">
+                    </div>
+                        
+                    <div class="form-group mb-1">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" placeholder="Password"  formControlName="password">
+                    </div>
+                        
+                    <button type="submit" class="btn btn-sm fill-btn mt-3 me-2">Login</button>
+                    <button type="button" class="btn btn-sm border-btn mt-3" routerLink="/signup">Create an Account</button>
+                </form>
+            </div>
+        </div>  
+    </div>
+</div>

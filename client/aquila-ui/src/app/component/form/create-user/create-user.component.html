@@ -1,0 +1,24 @@
+<div class="position-fixed w-100 h-100 d-flex align-items-center justify-content-center" style="z-index: 2; background-color: rgba(0, 0, 0, 0.151);">
+    <div class="card border-0 p-3" style="min-width: 80%; max-width: 750px;">
+        <h5>Create User</h5>
+        <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+            <div class="form-group mt-2">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="nemail" placeholder="Email" formControlName="email">
+              </div>
+
+            <div class="form-group mt-2">
+              <label for="name">Username</label>
+              <input type="text" class="form-control" id="name" placeholder="Username" formControlName="name">
+            </div>
+
+            <div class="form-group mt-2">
+                <label for="password">Password</label>
+                <input type="text" class="form-control" id="password" placeholder="Password" formControlName="password">
+            </div>
+
+            <button type="submit" class="btn btn-sm fill-btn mt-3 me-2">Create User</button>
+            <button type="button" class="btn btn-sm border-btn mt-3" (click)="cancel()">Cancel</button>
+          </form>
+    </div>
+</div>

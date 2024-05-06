@@ -1,0 +1,25 @@
+.table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.table th.title-col {
+    width: 40%;
+}
+
+.table th {
+    background-color: rgb(250,250,252);
+}
+
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 620px) {
+    @media screen and (max-width: 620px) {
+        .menu-toggle {
+            display: block;
+        }
+    }
+}

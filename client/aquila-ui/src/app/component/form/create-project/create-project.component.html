@@ -1,0 +1,54 @@
+<div class="position-fixed w-100 h-100 d-flex align-items-center justify-content-center" style="z-index: 2; background-color: rgba(0, 0, 0, 0.151);">
+    <div class="card border-0 p-3" style="min-width: 80%; max-width: 750px;">
+        <h5>Create Project</h5>
+        <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+            <div class="form-group mt-2">
+              <label for="name">Project Name</label>
+              <input type="text" class="form-control" id="name" placeholder="Project Title" formControlName="name">
+            </div>
+
+            <div class="form-group mt-2">
+                <label for="code">Project Code</label>
+                <input type="text" class="form-control" id="code" placeholder="CODE" oninput="this.value = this.value.toUpperCase()" formControlName="code">
+              </div>
+
+            <div class="form-group mt-2">
+              <label for="description">Description</label>
+              <textarea class="form-control" id="description" rows="3" placeholder="Project Description" formControlName="description"></textarea>
+            </div>
+
+            <div class="form-group mt-2">
+                <label for="members">Members</label>
+                <div class="form-control d-flex align-items-center justify-content-start gap-2" id="members">
+                    <div class="flex-grow-1 d-flex gap-2">
+                        <div class="badge py-2" style="background-color: rgb(86, 71, 235);">
+                            <p class="m-0">{{ username }}</p>
+                        </div>
+                        @for(user of request.teamMembers; track user) {
+                            <div class="badge py-2" style="background-color: rgb(86, 71, 235);">
+                                <p class="m-0">{{ user }}</p>
+                            </div>
+                        }
+                    </div>
+
+                    <div [ngClass]="{'rotate': selectUser, 'normal': !selectUser}">
+                        <fa-icon [icon]="faArrowDown" class="text-secondary" style="cursor: pointer;" (click)="selectUser = !selectUser"></fa-icon>
+                    </div>
+                </div>
+
+                @if (selectUser) {
+                    <ul class="list-group mt-1">
+                        @for(user of users; track user) {
+                            @if (!request.teamMembers.includes(user.name) && !(user.name == username)) {
+                                <li class="list-group-item" style="cursor: pointer;" (click)="addToMember(user.name)">{{ user.name }}</li>
+                            }
+                        }
+                    </ul>
+                }
+            </div>
+
+            <button type="submit" class="btn btn-sm fill-btn mt-3 me-2">Create Project</button>
+            <button type="button" class="btn btn-sm border-btn mt-3" (click)="cancel()">Cancel</button>
+          </form>
+    </div>
+</div>

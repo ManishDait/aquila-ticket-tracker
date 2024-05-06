@@ -1,0 +1,81 @@
+<div class="position-fixed w-100 h-100 d-flex align-items-center justify-content-center" style="z-index: 2; background-color: rgba(0, 0, 0, 0.151);">
+    <div class="card border-0 p-3" style="min-width: 80%; max-width: 750px;">
+        <h5>Create Ticket</h5>
+
+        <form [formGroup]="ticketForm" (ngSubmit)="onSubmit()">
+            <div class="form-group mt-2">
+              <label for="title">Title</label>
+              <input type="text" class="form-control" id="title" placeholder="Title" formControlName="title">
+            </div>
+
+            
+            <div class="form-group mt-2">
+              <label for="description">Description</label>
+              <textarea class="form-control" id="description" rows="3" placeholder="Ticket Description" formControlName="description"></textarea>
+            </div>
+
+            <div class="form-group mt-2">
+                <label for="priority">Priority</label>
+                <div class="form-control d-flex align-items-center justify-content-start gap-2" id="priority">
+                    <div class="flex-grow-1">
+                        @if (request.priority == '') {
+                            <p class="m-0 text-secondary">Priority</p>
+                        }
+    
+                        @if (request.priority != '') {
+                            <p class="m-0">{{ request.priority }}</p>
+                        }
+                    </div>
+                    
+                    <div [ngClass]="{'rotate': selectPriority, 'normal': !selectPriority}">
+                        <fa-icon [icon]="faArrowDown" class="text-secondary" style="cursor: pointer;" (click)="selectPriority = !selectPriority"></fa-icon>
+                    </div>
+                </div>
+
+                @if (selectPriority) {
+                    <ul class="list-group mt-1">
+                        @for (priority of getPriorities(); track priority) {
+                            @if (!(request.priority == priority)) {
+                                <li class="list-group-item" style="cursor: pointer;" (click)="setPriority(priority)">{{ priority }}</li>
+                            }
+                        }
+                    </ul>
+                }
+            </div>
+
+            <div class="form-group mt-2">
+                <label for="assignee">Assignees</label>
+                <div class="form-control d-flex align-items-center justify-content-start gap-2" id="assignee">
+                    <div class="flex-grow-1 d-flex gap-2">
+                        @if (request.assignees.length == 0) {
+                            <p class="m-0 text-secondary">Assign to</p>
+                        }
+                        
+                        @for (user of request.assignees; track user) {
+                            <div class="badge py-2" style="background-color: rgb(86, 71, 235);">
+                                <p class="m-0">{{ user }}</p>
+                            </div>
+                        }
+                    </div>
+
+                    <div [ngClass]="{'rotate': selectUser, 'normal': !selectUser}">
+                        <fa-icon [icon]="faArrowDown" class="text-secondary" style="cursor: pointer;" (click)="selectUser = !selectUser"></fa-icon>
+                    </div>
+                </div>
+
+                @if (selectUser) {
+                    <ul class="list-group mt-1">
+                        @for(user of getTeamMembers(); track user) {
+                            @if (!request.assignees.includes(user.name)) {
+                                <li class="list-group-item" style="cursor: pointer;" (click)="addToMember(user.name)">{{ user.name }}</li>
+                            }
+                        }
+                    </ul>
+                }
+            </div>
+
+            <button type="submit" class="btn btn-sm fill-btn mt-3 me-2">Create Ticket</button>
+            <button type="button" class="btn btn-sm border-btn mt-3" (click)="cancel()">Cancel</button>
+          </form>
+    </div>
+</div>

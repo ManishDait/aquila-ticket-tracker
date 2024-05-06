@@ -1,0 +1,70 @@
+<div class="d-flex px-2 align-items-center justify-content-start gap-4">
+    <fa-icon [icon] ="faMenu" class="menu-toggle text-secondary" style="font-size: 1.5rem;" (click)="toggleNavbar()"></fa-icon>
+    <h4 class="m-0">Ticket</h4>
+</div>
+
+<div class="d-flex align-items-center justify-content-start px-2 py-3 gap-2 flex-wrap">
+    <div class="d-flex align-items-center justify-content-center border-btn btn" (click)="filter = 'ALL'" [ngClass]="{'border-btn-active': filter == 'ALL'}"><p class="m-0">All</p></div>
+    <div class="d-flex align-items-center justify-content-center border-btn btn" (click)="filter = 'OPEN'" [ngClass]="{'border-btn-active': filter == 'OPEN'}"><p class="m-0">Open</p></div>
+    <div class="d-flex align-items-center justify-content-center border-btn btn" (click)="filter = 'IN_PROGRESS'" [ngClass]="{'border-btn-active': filter == 'IN_PROGRESS'}"><p class="m-0">In Progress</p></div>
+    <div class="d-flex align-items-center justify-content-center border-btn btn" (click)="filter = 'CLOSED'" [ngClass]="{'border-btn-active': filter == 'CLOSED'}"><p class="m-0">Closed</p></div>
+    <div class="d-flex align-items-center justify-content-center border-btn btn" (click)="filter = 'RESOLVE'" [ngClass]="{'border-btn-active': filter == 'RESOLVE'}"><p class="m-0">Resolved</p></div>
+</div>
+
+<div class="card py-1 mt-1 border-0" style="overflow-x: auto;">
+    <table class="table border">
+        <thead>
+          <tr>
+            <th class="p-1 text-secondary"><small>Status</small></th>
+            <th class="p-1 text-secondary"><small>Project</small></th>
+            <th class="p-1 text-secondary title-col"><small>Title</small></th>
+            <th class="p-1 text-secondary"><small>priority</small></th>
+            <th class="p-1 text-secondary"><small>createdAt</small></th>
+            <th class="p-1 text-secondary"><small>updatedAt</small></th>
+            <th class="p-1 text-secondary"><small>reportedBy</small></th>
+          </tr>
+        </thead>
+        <tbody>
+            @if (tickets.length != 0) {
+                @if (filter == 'ALL') {
+                    @for (ticket of tickets; track ticket) {
+                        <tr style="cursor: pointer;" (click)="viewTicket(ticket)">
+                            <td><fa-icon [icon]="faStatus" [ngClass]="{'text-warning': ticket.status == 'OPEN', 'text-primary': ticket.status == 'IN_PROGRESS', 'text-success': ticket.status == 'RESOLVE', 'text-secondary': ticket.status == 'CLOSED'}"  style="font-size: 1.3rem;"></fa-icon></td>
+                            <td class="text-secondary">{{ ticket.projectCode }}</td>
+                            <td>{{ ticket.title }}</td>
+                            <td><fa-icon [icon]="faPriority" [ngClass]="{'text-success': ticket.priority == 'LOW', 'text-warning': ticket.priority == 'MEDIUM', 'text-danger': ticket.priority == 'HIGH'}" style="font-size: .6rem;"></fa-icon></td>
+                            <td>{{ ticket.createdAt }}</td>
+                            <td>{{ ticket.updatedAt }}</td>
+                            <td>{{ ticket.reportedBy!.name }}</td>
+                        </tr>
+                    }
+                }
+
+                @if (filter != 'ALL') {
+                    @for (ticket of tickets; track ticket) {
+                        @if (ticket.status == filter) {
+                            <tr style="cursor: pointer;" (click)="viewTicket(ticket)">
+                                <td><fa-icon [icon]="faStatus" [ngClass]="{'text-warning': ticket.status == 'OPEN', 'text-primary': ticket.status == 'IN_PROGRESS', 'text-success': ticket.status == 'RESOLVE', 'text-secondary': ticket.status == 'CLOSED'}"  style="font-size: 1.3rem;"></fa-icon></td>
+                                <td class="text-secondary">{{ ticket.projectCode }}</td>
+                                <td>{{ ticket.title }}</td>
+                                <td><fa-icon [icon]="faPriority" [ngClass]="{'text-success': ticket.priority == 'LOW', 'text-warning': ticket.priority == 'MEDIUM', 'text-danger': ticket.priority == 'HIGH'}" style="font-size: .6rem;"></fa-icon></td>
+                                <td>{{ ticket.createdAt }}</td>
+                                <td>{{ ticket.updatedAt }}</td>
+                                <td>{{ ticket.reportedBy!.name }}</td>
+                            </tr>
+                        }
+                    }
+                }
+            }
+            
+            
+            @if (tickets.length == 0) {
+                <tr style="cursor: pointer;">
+                    <td colspan="6">
+                        <h3 class="m-0 text-secondary text-center">-</h3>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

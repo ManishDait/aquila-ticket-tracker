@@ -1,0 +1,57 @@
+<div class="side-nav px-2 py-2 d-flex flex-column h-100">
+    <div class="logo d-flex align-items-center justify-content-center">
+        <img src="assets/icon.png" style="width: 1.5rem;">
+        <h4 class="m-0 mt-1" style="font-weight: bolder;">AQUILA</h4>
+
+        <div  class="flex-grow-1 text-end menu-toggle px-2" style="font-size: 1.3rem; cursor: pointer;" (click)="closeNavbar()">
+            <fa-icon [icon]="faBack"></fa-icon>
+        </div>
+        
+    </div>
+
+    <ul class="options m-0 p-0 mt-3 d-flex flex-column flex-grow-1">
+        <li>
+            <div class="option-item" [ngClass]="{'active-item': getPage() == 'home'}" routerLink="home" (click)="setPage('home')">
+                <fa-icon [icon]="faHome" class="text-secondary"></fa-icon>
+                <p class="m-0">Home</p>
+            </div>
+        </li> 
+
+        <li>
+            <div class="option-item" routerLink="project" [ngClass]="{'active-item': getPage() == 'project'}" (click)="setPage('project')">
+                <fa-icon [icon]="faProject" class="text-secondary"></fa-icon>
+                <p class="m-0">Projects</p>
+            </div>
+        </li>
+
+        <li>
+            <div class="option-item" routerLink="ticket" [ngClass]="{'active-item': getPage() == 'ticket'}" (click)="setPage('ticket')">
+                <fa-icon [icon]="faTicket" class="text-secondary"></fa-icon>
+                <p class="m-0">Tickets</p>
+            </div>
+        </li>
+
+        <li>
+            <div class="option-item" routerLink="manage" [ngClass]="{'active-item': getPage() == 'manage'}" (click)="setPage('manage')">
+                <fa-icon [icon]="faManage" class="text-secondary"></fa-icon>
+                <p class="m-0">Manage</p>
+            </div>
+        </li>
+    </ul>
+
+    <ul class="options m-0 p-0 mt-3 d-flex flex-column">
+        <li>
+            <div class="d-flex align-items-center justify-content-start gap-2">
+                <div style="width: 2.2rem; height: 2.2rem; border-radius: 100%;" class="d-flex align-items-center justify-content-center" [ngStyle]="{'background-color': getColor()}">
+                    <p class="m-0 text-light">{{ getUsername().charAt(0) }}</p>
+                </div>
+                
+                <p class="m-0" style="font-weight: bold;">{{ getUsername() }}</p>
+            </div>
+        </li>
+
+        <li class="mt-2">
+            <button class="btn btn-sm logout">Logout</button>
+        </li>
+    </ul>
+</div>
