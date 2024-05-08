@@ -95,7 +95,6 @@ export class ViewTicketComponent {
     const hue = hash % 360;
     const saturation = 50;
     const lightness = 80;
-    console.log(`hsl(${hue}, ${saturation}, ${lightness})`);
     
     return `hsl(${hue},${saturation}%,${lightness}%)`;
   }
