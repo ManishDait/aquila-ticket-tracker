@@ -52,8 +52,9 @@
                         }
                         
                         @for (user of request.assignees; track user) {
-                            <div class="badge py-2" style="background-color: rgb(86, 71, 235);">
+                            <div class="badge py-2 d-flex align-items-center gap-2" style="background-color: rgb(86, 71, 235);">
                                 <p class="m-0">{{ user }}</p>
+                                <fa-icon [icon]="faClose" style="cursor: pointer;" (click)="removeFromMember(user)"></fa-icon>
                             </div>
                         }
                     </div>

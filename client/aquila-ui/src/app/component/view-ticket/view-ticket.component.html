@@ -74,17 +74,32 @@
 
             @for (comment of comments; track comment) {
                 <li>
-                    <div>
+                    @if (comment.context.substring(0, 14) == '%__edit_log__%') {
                         <div class="d-flex gap-2 align-items-center">
                             <div style="width: 2.2rem; height: 2.2rem; border-radius: 100%;" class="d-flex align-items-center justify-content-center" [ngStyle]="{'background-color': getColor(comment.createdBy)}">
                                 <p class="m-0 text-light">{{ comment.createdBy.charAt(0) }}</p>
                             </div>
-                            <p class="m-0 text-secondary"><span style="font-weight: bold;" class="text-body">{{ comment.createdBy }}</span> {{ formatDate(comment.createdAt) }}</p>
+                            <p class="m-0 text-secondary"><span style="font-weight: bold;" class="text-body">{{ comment.createdBy }}</span> {{ comment.context.substring(14) }} {{ formatDate(ticket.createdAt) }}</p>
                         </div>
                         <div class="d-flex my-1">
-                            <span style="border-left: .18rem solid rgb(214, 214, 214); margin-left: 1rem;" class="p-2">{{ comment.context }}</span>
+                            <span style="border-left: .18rem solid rgb(214, 214, 214); margin-left: 1rem;" class="p-2"></span>
                         </div>
-                    </div>
+                    }
+
+                    @if (comment.context.substring(0, 14) != '%__edit_log__%') {
+                        <div>
+                            <div class="d-flex gap-2 align-items-center">
+                                <div style="width: 2.2rem; height: 2.2rem; border-radius: 100%;" class="d-flex align-items-center justify-content-center" [ngStyle]="{'background-color': getColor(comment.createdBy)}">
+                                    <p class="m-0 text-light">{{ comment.createdBy.charAt(0) }}</p>
+                                </div>
+                                <p class="m-0 text-secondary"><span style="font-weight: bold;" class="text-body">{{ comment.createdBy }}</span> {{ formatDate(comment.createdAt) }}</p>
+                            </div>
+                            <div class="d-flex my-1">
+                                <span style="border-left: .18rem solid rgb(214, 214, 214); margin-left: 1rem;" class="p-2">{{ comment.context }}</span>
+                            </div>
+                        </div>
+                    }
+                    
                 </li>
             }
         </ul>

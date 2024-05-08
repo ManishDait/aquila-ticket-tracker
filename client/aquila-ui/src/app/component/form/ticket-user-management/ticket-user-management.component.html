@@ -5,13 +5,14 @@
             <div class="form-group mt-2">
                 <label for="assignees">Assignees</label>
                 <div class="form-control d-flex align-items-center justify-content-start gap-2" id="assignees">
-                    @if (ticket.assignees.length == 0) {
+                    @if (request.assignees.length == 0) {
                         <p class="m-0 text-secondary">No Assignee</p>
                     }
 
-                    @for (user of ticket.assignees; track user) {
-                        <div class="badge py-2" style="background-color: rgb(86, 71, 235);">
+                    @for (user of request.assignees; track user) {
+                        <div class="badge py-2 d-flex align-items-center gap-2" style="background-color: rgb(86, 71, 235);">
                             <p class="m-0">{{ user.name }}</p>
+                            <fa-icon [icon]="faClose" style="cursor: pointer;" (click)="removeFromMember(user)"></fa-icon>
                         </div>
                     }
                 </div>

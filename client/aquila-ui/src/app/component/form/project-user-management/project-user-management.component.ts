@@ -6,7 +6,7 @@ import { UserService } from '../../../service/user.service';
 import { UserResponse } from '../../../model/user';
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-project-user-management',
@@ -20,6 +20,7 @@ export class ProjectUserManagementComponent {
   @Input() project!: ProjectResponse;
 
   faArrowDown = faChevronDown;
+  faClose = faXmark;
 
   users: UserResponse[] = [];
 
@@ -39,6 +40,11 @@ export class ProjectUserManagementComponent {
     }
 
     return false;
+  }
+
+  removeFromMember(user: UserResponse) {
+    var indx = this.project.teamMembers.indexOf(user);
+    this.project.teamMembers.splice(indx, 1);
   }
 
   addAssignee(user: UserResponse) {

@@ -4,10 +4,9 @@ import { UserResponse } from '../../../model/user';
 import { UserService } from '../../../service/user.service';
 import { ProjectRequest } from '../../../model/project';
 import { AuthService } from '../../../service/auth.service';
-import { DashboardComponent } from '../../dashboard/dashboard.component';
 import { ProjectService } from '../../../service/project.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { CommonModule } from '@angular/common';
 import { ProjectComponent } from '../../dashboard/project/project.component';
 
@@ -23,6 +22,7 @@ export class CreateProjectComponent {
   users: UserResponse[] = [];
   username: string;
   faArrowDown = faChevronDown;
+  faClose = faXmark;
 
   selectUser: boolean = false;
 
@@ -55,6 +55,11 @@ export class CreateProjectComponent {
 
   addToMember(user: string) {
     this.request.teamMembers.push(user);
+  }
+
+  removeFromMember(user: string) {
+    var indx = this.request.teamMembers.indexOf(user);
+    this.request.teamMembers.splice(indx, 1);
   }
 
   cancel() {

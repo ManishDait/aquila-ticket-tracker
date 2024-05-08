@@ -6,7 +6,7 @@ import { TicketService } from '../../../service/ticket.service';
 import { UserResponse } from '../../../model/user';
 import { Constant } from '../../../app-constant';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -28,6 +28,7 @@ export class CreateTicketComponent {
   }
 
   faArrowDown = faChevronDown;
+  faClose = faXmark;
 
   selectUser: boolean = false;
   selectPriority: boolean = false;
@@ -49,6 +50,11 @@ export class CreateTicketComponent {
 
   addToMember(user: string) {
     this.request.assignees.push(user);
+  }
+
+  removeFromMember(user: string) {
+    var indx = this.request.assignees.indexOf(user);
+    this.request.assignees.splice(indx, 1);
   }
 
   setPriority(priority: string) {
