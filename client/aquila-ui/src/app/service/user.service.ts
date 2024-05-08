@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Constant } from '../app-constant';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { UserResponse } from '../model/user';
+import { UserRequest, UserResponse } from '../model/user';
 
 const url = `${Constant.API_ENDPOINT}/user`;
 
@@ -17,7 +17,7 @@ export class UserService {
     return this.httpClient.get<UserResponse[]>(`${url}`);
   }
 
-  updateUser(request: UserResponse): Observable<UserResponse> {
+  updateUser(request: UserRequest): Observable<UserResponse> {
     return this.httpClient.put<UserResponse>(`${url}`, request);
   }
 }

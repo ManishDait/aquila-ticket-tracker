@@ -1,7 +1,7 @@
 <div class="position-fixed w-100 h-100 d-flex align-items-center justify-content-center" style="z-index: 2; background-color: rgba(0, 0, 0, 0.151);">
     <div class="card border-0 p-3" style="min-width: 80%; max-width: 750px;">
         <h5>Edit User</h5>
-        <form (ngSubmit)="onSubmit()">
+        <form (ngSubmit)="onSubmit(password.value)">
             <div class="form-group mt-2">
                 <label for="email">Email</label>
                 <input type="email" class="form-control" id="email" placeholder="Email" name="email" [(ngModel)]="user.email">
@@ -9,12 +9,12 @@
 
             <div class="form-group mt-2">
               <label for="name">Username</label>
-              <input type="text" class="form-control" id="name" placeholder="Username" disabled="true">
+              <input type="text" class="form-control" id="name" placeholder="Username" disabled="true" name="name" [(ngModel)]="user.name">
             </div>
 
             <div class="form-group mt-2">
                 <label for="password">Password</label>
-                <input type="text" class="form-control" id="password" placeholder="Password">
+                <input type="text" class="form-control" id="password" placeholder="Edit if want to change password?" #password>
             </div>
 
             <div class="form-group mt-2">

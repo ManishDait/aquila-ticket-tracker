@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { UserResponse } from '../../../model/user';
+import { UserRequest, UserResponse } from '../../../model/user';
 import { Constant } from '../../../app-constant';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faChevronDown, faL, faPen } from '@fortawesome/free-solid-svg-icons';
@@ -33,8 +33,22 @@ export class EditUserComponent {
     this.selectRole = false;
   }
 
-  onSubmit() {
-    this.userService.updateUser(this.user).subscribe(
+  onSubmit(pass: string) {
+    var request: UserRequest = {
+      name: this.user.name,
+      email: this.user.email,
+      role: this.user.role,
+      password: null,
+      enabled: this.user.enabled
+    }
+    
+    if (pass != '') {
+      request.password = pass;
+    }
+
+    console.log(request);
+
+    this.userService.updateUser(request).subscribe(
       (data) => {
         this.management.getUsers();
         this.cancel();
