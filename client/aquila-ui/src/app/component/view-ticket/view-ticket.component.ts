@@ -10,7 +10,6 @@ import { CommentRequest, CommentResponse } from '../../model/comment';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { EditTicketComponent } from '../form/edit-ticket/edit-ticket.component';
 import { TicketUserManagementComponent } from '../form/ticket-user-management/ticket-user-management.component';
-import { AvatarModule } from 'ngx-avatars';
 
 @Component({
   selector: 'app-view-ticket',

@@ -3,7 +3,6 @@ import { RouterLink } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faBarsProgress, faChevronLeft, faHome, faTicketSimple, faUserTie } from '@fortawesome/free-solid-svg-icons';
 import { DashboardComponent } from '../dashboard.component';
-import { AvatarModule } from 'ngx-avatars';
 import { CommonModule } from '@angular/common';
 
 @Component({
