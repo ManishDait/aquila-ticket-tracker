@@ -33,8 +33,8 @@
                             <td class="text-secondary">{{ ticket.projectCode }}</td>
                             <td>{{ ticket.title }}</td>
                             <td><fa-icon [icon]="faPriority" [ngClass]="{'text-success': ticket.priority == 'LOW', 'text-warning': ticket.priority == 'MEDIUM', 'text-danger': ticket.priority == 'HIGH'}" style="font-size: .6rem;"></fa-icon></td>
-                            <td>{{ ticket.createdAt }}</td>
-                            <td>{{ ticket.updatedAt }}</td>
+                            <td>{{ formatDate(ticket!.createdAt) }}</td>
+                            <td>{{ formatDate(ticket!.updatedAt) }}</td>
                             <td>{{ ticket.reportedBy!.name }}</td>
                         </tr>
                     }
@@ -48,8 +48,8 @@
                                 <td class="text-secondary">{{ ticket.projectCode }}</td>
                                 <td>{{ ticket.title }}</td>
                                 <td><fa-icon [icon]="faPriority" [ngClass]="{'text-success': ticket.priority == 'LOW', 'text-warning': ticket.priority == 'MEDIUM', 'text-danger': ticket.priority == 'HIGH'}" style="font-size: .6rem;"></fa-icon></td>
-                                <td>{{ ticket.createdAt }}</td>
-                                <td>{{ ticket.updatedAt }}</td>
+                                <td>{{ formatDate(ticket!.createdAt) }}</td>
+                                <td>{{ formatDate(ticket!.updatedAt) }}</td>
                                 <td>{{ ticket.reportedBy!.name }}</td>
                             </tr>
                         }

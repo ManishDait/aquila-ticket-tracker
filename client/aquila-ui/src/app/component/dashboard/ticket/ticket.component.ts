@@ -7,6 +7,7 @@ import { TicketService } from '../../../service/ticket.service';
 import { TicketResponse } from '../../../model/ticket';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { formatDateTime } from '../../../helper';
 
 @Component({
   selector: 'app-ticket',
@@ -33,6 +34,14 @@ export class TicketComponent {
         console.log('Error:', err);
       }
     );
+  }
+
+  formatDate(date: Date | null): string {
+    if (date != null) {
+      return formatDateTime(date.toString());
+    }
+
+    return '';
   }
 
   toggleNavbar() {

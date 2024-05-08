@@ -12,6 +12,7 @@ import { faBars, faCircle, faCircleCheck} from '@fortawesome/free-solid-svg-icon
 import { faCircleDot } from '@fortawesome/free-regular-svg-icons';
 import { EditProjectComponent } from '../form/edit-project/edit-project.component';
 import { ProjectUserManagementComponent } from '../form/project-user-management/project-user-management.component';
+import { formatDateTime } from '../../helper';
 
 @Component({
   selector: 'app-view-project',
@@ -106,6 +107,14 @@ export class ViewProjectComponent {
         this._tickets = res;
       }
     );
+  }
+
+  formatDate(date: Date | null): string {
+    if (date != null) {
+      return formatDateTime(date.toString());
+    }
+
+    return '';
   }
 
   viewTicket(ticket: TicketResponse) {

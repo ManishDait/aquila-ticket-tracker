@@ -50,8 +50,8 @@
                             <td><fa-icon [icon]="faStatus" [ngClass]="{'text-warning': ticket.status == 'OPEN', 'text-primary': ticket.status == 'IN_PROGRESS', 'text-success': ticket.status == 'RESOLVE', 'text-secondary': ticket.status == 'CLOSED'}"  style="font-size: 1.3rem;"></fa-icon></td>
                             <td>{{ ticket.title }}</td>
                             <td><fa-icon [icon]="faPriority" [ngClass]="{'text-success': ticket.priority == 'LOW', 'text-warning': ticket.priority == 'MEDIUM', 'text-danger': ticket.priority == 'HIGH'}" style="font-size: .6rem;"></fa-icon></td>
-                            <td>{{ ticket.createdAt }}</td>
-                            <td>{{ ticket.updatedAt }}</td>
+                            <td>{{ formatDate(ticket!.createdAt) }}</td>
+                            <td>{{ formatDate(ticket!.updatedAt) }}</td>
                             <td>{{ ticket.reportedBy!.name }}</td>
                         </tr>
                     }
