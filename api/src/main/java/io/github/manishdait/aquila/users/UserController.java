@@ -3,6 +3,8 @@ package io.github.manishdait.aquila.users;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.github.manishdait.aquila.dto.request.UserRequest;
+
 import io.github.manishdait.aquila.dto.response.UserResponse;
 import lombok.AllArgsConstructor;
 
@@ -29,7 +31,7 @@ public class UserController {
     }
     
     @PutMapping
-    public ResponseEntity<UserResponse> updateUser(@RequestBody UserResponse request) {
+    public ResponseEntity<UserResponse> updateUser(@RequestBody UserRequest request) {
         return ResponseEntity.status(HttpStatus.OK).body(userService.updateUser(request));
     }
 }

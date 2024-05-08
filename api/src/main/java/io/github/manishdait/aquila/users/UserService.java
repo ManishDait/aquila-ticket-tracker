@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import io.github.manishdait.aquila.dto.request.UserRequest;
 import io.github.manishdait.aquila.dto.response.UserResponse;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -30,7 +31,7 @@ public class UserService implements UserDetailsService {
         return userRepository.findAll().stream().map(u -> maprToUserResponse(u)).toList();
     }
 
-    public UserResponse updateUser(UserResponse request) {
+    public UserResponse updateUser(UserRequest request) {
         User user = userRepository.findByUsername(request.getName()).orElseThrow();
         user.setEmail(request.getEmail());
         if (request.getRole().equals(Role.USER.name())) {
@@ -39,6 +40,10 @@ public class UserService implements UserDetailsService {
             user.setRole(Role.ADMIN);
         }
 
+        if (request.getPassword() != null) {
+            user.setPassword(request.getPassword());
+        }
+        
         userRepository.save(user);
         return maprToUserResponse(user);
     }
