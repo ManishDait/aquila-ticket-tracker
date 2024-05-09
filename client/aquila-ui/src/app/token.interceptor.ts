@@ -4,7 +4,7 @@ import { AuthService } from './service/auth.service';
 import { Observable, catchError, switchMap, throwError } from 'rxjs';
 import { AuthResponse } from './model/auth';
 
-var isRefreshing = false;
+var isRefreshing: boolean = false;
 
 export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthService);

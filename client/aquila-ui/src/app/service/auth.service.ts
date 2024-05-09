@@ -5,7 +5,7 @@ import { AuthResponse, LoginRequest, SignupRequest } from '../model/auth';
 import { Observable, map, tap } from 'rxjs';
 import { LocalStorageService } from 'ngx-webstorage';
 
-const url = `${Constant.API_ENDPOINT}/auth`;
+const url: string = `${Constant.API_ENDPOINT}/auth`;
 
 @Injectable({
   providedIn: 'root'
@@ -58,7 +58,7 @@ export class AuthService {
     );
   }
 
-  getRefreshToken() {
+  getRefreshToken(): string {
     return this.localStorage.retrieve('refreshToken');
   }
 

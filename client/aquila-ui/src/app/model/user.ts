@@ -2,7 +2,7 @@ export interface UserResponse {
     name: string,
     email: string,
     role: string,
-    enabled: boolean;
+    enabled: boolean
 }
 
 export interface UserRequest {
@@ -10,5 +10,5 @@ export interface UserRequest {
     email: string,
     role: string,
     password: string | null,
-    enabled: boolean;
+    enabled: boolean
 }

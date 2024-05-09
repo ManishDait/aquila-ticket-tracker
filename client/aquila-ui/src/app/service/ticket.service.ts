@@ -5,7 +5,7 @@ import { AuthService } from './auth.service';
 import { Observable } from 'rxjs';
 import { TicketRequest, TicketResponse } from '../model/ticket';
 
-const url = `${Constant.API_ENDPOINT}/ticket`
+const url: string = `${Constant.API_ENDPOINT}/ticket`
 
 @Injectable({
   providedIn: 'root'

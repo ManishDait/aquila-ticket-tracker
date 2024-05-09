@@ -11,21 +11,21 @@
 
     <ul class="options m-0 p-0 mt-3 d-flex flex-column flex-grow-1">
         <li>
-            <div class="option-item" [ngClass]="{'active-item': getPage() == 'home'}" routerLink="home" (click)="setPage('home')">
+            <div class="option-item" replaceUrl="true" [routerLink]="['home']" [ngClass]="{'active-item': getPage() == 'home'}" (click)="setPage('home')">
                 <fa-icon [icon]="faHome" class="text-secondary"></fa-icon>
                 <p class="m-0">Home</p>
             </div>
         </li> 
 
         <li>
-            <div class="option-item" routerLink="project" [ngClass]="{'active-item': getPage() == 'project'}" (click)="setPage('project')">
+            <div class="option-item" replaceUrl="true" [routerLink]="['project']" [ngClass]="{'active-item': getPage() == 'project'}" (click)="setPage('project')">
                 <fa-icon [icon]="faProject" class="text-secondary"></fa-icon>
                 <p class="m-0">Projects</p>
             </div>
         </li>
 
         <li>
-            <div class="option-item" routerLink="ticket" [ngClass]="{'active-item': getPage() == 'ticket'}" (click)="setPage('ticket')">
+            <div class="option-item" replaceUrl="true" [routerLink]="['ticket']" [ngClass]="{'active-item': getPage() == 'ticket'}" (click)="setPage('ticket')">
                 <fa-icon [icon]="faTicket" class="text-secondary"></fa-icon>
                 <p class="m-0">Tickets</p>
             </div>
@@ -33,7 +33,7 @@
 
         @if (getRole() == 'ADMIN') {
             <li>
-                <div class="option-item" routerLink="manage" [ngClass]="{'active-item': getPage() == 'manage'}" (click)="setPage('manage')">
+                <div class="option-item" replaceUrl="true" [routerLink]="['manage', { replaceUrl: true }]" [ngClass]="{'active-item': getPage() == 'manage'}" (click)="setPage('manage')">
                     <fa-icon [icon]="faManage" class="text-secondary"></fa-icon>
                     <p class="m-0">Manage</p>
                 </div>

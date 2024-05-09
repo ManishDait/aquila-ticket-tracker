@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CommentRequest, CommentResponse } from '../model/comment';
 
-const url = `${Constant.API_ENDPOINT}/comment`;
+const url: string = `${Constant.API_ENDPOINT}/comment`;
 
 @Injectable({
   providedIn: 'root'

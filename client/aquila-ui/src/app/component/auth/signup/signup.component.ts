@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../service/auth.service';
 import { SignupRequest } from '../../../model/auth';
 
@@ -20,7 +20,7 @@ export class SignupComponent {
     password: ''
   };
 
-  constructor (private authService: AuthService) {
+  constructor (private authService: AuthService, private router: Router) {
     this.signupForm = new FormGroup({
       'email': new FormControl(),
       'username': new FormControl(),
@@ -35,7 +35,7 @@ export class SignupComponent {
 
     this.authService.createUser(this.request).subscribe(
       (res) => {
-        console.log("Account Created");
+        this.router.navigate(['login']);
       }, (err) => {
         console.log('Error: ', err);
       }

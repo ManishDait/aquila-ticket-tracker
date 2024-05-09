@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { UserRequest, UserResponse } from '../model/user';
 
-const url = `${Constant.API_ENDPOINT}/user`;
+const url: string = `${Constant.API_ENDPOINT}/user`;
 
 @Injectable({
   providedIn: 'root'

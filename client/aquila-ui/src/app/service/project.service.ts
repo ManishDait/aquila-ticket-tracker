@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { ProjectRequest, ProjectResponse } from '../model/project';
 import { AuthService } from './auth.service';
 
-const url = `${Constant.API_ENDPOINT}/project`
+const url: string = `${Constant.API_ENDPOINT}/project`
 
 @Injectable({
   providedIn: 'root'
