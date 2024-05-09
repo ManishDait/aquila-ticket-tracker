@@ -13,6 +13,7 @@ import { faCircleDot } from '@fortawesome/free-regular-svg-icons';
 import { EditProjectComponent } from '../form/edit-project/edit-project.component';
 import { ProjectUserManagementComponent } from '../form/project-user-management/project-user-management.component';
 import { formatDateTime } from '../../helper';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-view-project',
@@ -42,8 +43,8 @@ export class ViewProjectComponent {
   private _editProject: boolean = false;
   private _manageUser: boolean = false;
 
-  constructor (private router: Router, private projectService: ProjectService, private ticketService: TicketService, private activeRoute: ActivatedRoute) { 
-    activeRoute.queryParams.subscribe(
+  constructor (private router: Router, private projectService: ProjectService, private ticketService: TicketService, private authService: AuthService, private activeRoute: ActivatedRoute) { 
+    this.activeRoute.queryParams.subscribe(
       (params) => {
         if (params['id'] != null && params['id'] != undefined) {
           this.projectService.getProjectByCode(params['id']).subscribe(
@@ -119,6 +120,10 @@ export class ViewProjectComponent {
 
   viewTicket(ticket: TicketResponse) {
     this.router.navigate(['ticket'], {queryParams: {id: ticket.id}});
+  }
+
+  getRole(): string {
+    return this.authService.getRole();
   }
 }
 

@@ -11,10 +11,12 @@
 </div>
 
 <div class="card px-4 mt-3 border-0">
-    <div>
-        <button class="btn border-btn width" (click)="createProject = true">New Project</button>
-    </div>
-    
+    @if (getRole() == 'ADMIN') {
+        <div>
+            <button class="btn border-btn width" (click)="createProject = true">New Project</button>
+        </div>
+    }
+
     <table class="table border mt-3">
         <thead>
           <tr>

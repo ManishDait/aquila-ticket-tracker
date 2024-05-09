@@ -26,6 +26,10 @@ export class DashboardComponent {
     return this._username;
   }
 
+  get role(): string {
+    return this.authService.getRole();
+  }
+
   get isNavbar(): boolean {
     return this._navbar;
   }

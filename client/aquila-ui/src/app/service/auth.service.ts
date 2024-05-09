@@ -55,4 +55,12 @@ export class AuthService {
   getAuthToken(): string {
     return this.localStorage.retrieve('authToken');
   }
+
+  getRole(): string {
+    return this.localStorage.retrieve('role');
+  }
+
+  isLoggin(): boolean {
+    return (this.getAuthToken() != null && this.getRefreshToken() != null)
+  }
 }

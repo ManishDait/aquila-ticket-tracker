@@ -49,4 +49,8 @@ export class NavbarComponent {
   setPage(page: string) {
     this.dashboard.tab = page;
   }
+
+  getRole(): string {
+    return this.dashboard.role;
+  }
 }

@@ -47,4 +47,8 @@ export class ProjectComponent {
   viewProject(project: ProjectResponse) {
     this.router.navigate(['project'], {queryParams: {id: project.code}})
   }
+
+  getRole(): string {
+    return this.dashboard.role;
+  }
 }

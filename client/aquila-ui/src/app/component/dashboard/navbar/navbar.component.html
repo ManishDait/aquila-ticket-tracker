@@ -31,12 +31,14 @@
             </div>
         </li>
 
-        <li>
-            <div class="option-item" routerLink="manage" [ngClass]="{'active-item': getPage() == 'manage'}" (click)="setPage('manage')">
-                <fa-icon [icon]="faManage" class="text-secondary"></fa-icon>
-                <p class="m-0">Manage</p>
-            </div>
-        </li>
+        @if (getRole() == 'ADMIN') {
+            <li>
+                <div class="option-item" routerLink="manage" [ngClass]="{'active-item': getPage() == 'manage'}" (click)="setPage('manage')">
+                    <fa-icon [icon]="faManage" class="text-secondary"></fa-icon>
+                    <p class="m-0">Manage</p>
+                </div>
+            </li>
+        }
     </ul>
 
     <ul class="options m-0 p-0 mt-3 d-flex flex-column">

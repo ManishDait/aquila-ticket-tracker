@@ -15,10 +15,12 @@
     <p class="m-0 text-secondary" style="font-weight: bold;">Description</p>
     <p>{{ project.description }}</p>
 
-    <div class="d-flex gap-2">
-        <button type="button" class="btn border-btn" (click)="manageUser = true">Manage Members</button>
-        <button type="button" class="btn border-btn" (click)="editProject = true">Edit Project</button>
-    </div>
+    @if (getRole() == 'ADMIN') {
+        <div class="d-flex gap-2">
+            <button type="button" class="btn border-btn" (click)="manageUser = true">Manage Members</button>
+            <button type="button" class="btn border-btn" (click)="editProject = true">Edit Project</button>
+        </div>
+    }
 
     <div class="mt-2">
         <button type="button" class="btn border-btn" (click)="createTicket = true">Create Ticket</button>
