@@ -1,0 +1,24 @@
+version: '3'
+services:
+  mysql-db:
+    image: mysql
+    container_name: mysql-db
+    restart: always
+    volumes:
+      - data:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=aquila
+
+  mailhog:
+    image: mailhog/mailhog
+    container_name: mailhog
+    restart: always
+    ports:
+      - 8025:8025
+      - 1025:1025
+    
+volumes:
+  data: {}
