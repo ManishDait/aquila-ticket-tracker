@@ -1,13 +1,12 @@
 version: '3'
+
 services:
-  mysql-db:
+  mysql_db:
     image: mysql
-    container_name: mysql-db
+    container_name: mysql_db
     restart: always
     volumes:
       - data:/var/lib/mysql
-    ports:
-      - 3306:3306
     environment:
       - MYSQL_ROOT_PASSWORD=password
       - MYSQL_DATABASE=aquila
@@ -18,7 +17,28 @@ services:
     restart: always
     ports:
       - 8025:8025
-      - 1025:1025
+
+  aquila_api:
+    image: manishdait/aquila-api:0.1-test
+    container_name: aquila_api
+    ports:
+      - 8080:8080
+    depends_on:
+      mysql_db:
+        condition: service_started
+      mailhog:
+        condition: service_started
+    restart: always
+
+  aquila_client:
+    image: manishdait/aquila-client:0.1-test
+    container_name: aquila_client
+    ports:
+      - 8090:80
+    depends_on:
+      - aquila_api
+    restart: always
     
+
 volumes:
   data: {}
