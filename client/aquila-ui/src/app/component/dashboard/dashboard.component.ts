@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ProjectComponent } from './project/project.component';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { AuthService } from '../../service/auth.service';
 
 @Component({
@@ -18,7 +18,7 @@ export class DashboardComponent {
 
   private _tab = 'home';
 
-  constructor (private authService: AuthService) {
+  constructor (private authService: AuthService, private router: Router) {
     this._username = this.authService.getUsername()
   }
 
@@ -44,5 +44,10 @@ export class DashboardComponent {
 
   set tab(page: string) {
     this._tab = page;
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['login']);
   }
 }

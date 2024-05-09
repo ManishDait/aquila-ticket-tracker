@@ -44,6 +44,20 @@ export class AuthService {
     }));
   }
 
+  logout() {
+    const token: string = this.getRefreshToken();
+    this.httpClient.delete<void>(`${url}/logout/${token}`).subscribe(
+      (res) => {
+        this.localStorage.clear('username');
+      this.localStorage.clear('authToken');
+      this.localStorage.clear('refreshToken');
+      this.localStorage.clear('createdAt');
+      this.localStorage.clear('expireAt');
+      this.localStorage.clear('role');
+      }
+    );
+  }
+
   getRefreshToken() {
     return this.localStorage.retrieve('refreshToken');
   }

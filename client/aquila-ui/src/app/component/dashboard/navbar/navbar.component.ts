@@ -53,4 +53,8 @@ export class NavbarComponent {
   getRole(): string {
     return this.dashboard.role;
   }
+
+  logout() {
+    this.dashboard.logout();
+  }
 }
