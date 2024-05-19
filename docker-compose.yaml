@@ -19,7 +19,7 @@ services:
       - 8025:8025
 
   aquila_api:
-    image: manishdait/aquila-api:0.1-test
+    image: manishdait/aquila_api:0.0.1 
     container_name: aquila_api
     ports:
       - 8080:8080
@@ -31,7 +31,7 @@ services:
     restart: always
 
   aquila_client:
-    image: manishdait/aquila-client:0.1-test
+    image: manishdait/aquila_client:0.0.1 
     container_name: aquila_client
     ports:
       - 8090:80
