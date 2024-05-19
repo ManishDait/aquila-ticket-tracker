@@ -1,0 +1,7 @@
+../assets
+./target
+../.git
+../.gitignore
+../docker
+../docker-compose.yaml
+./src/main/resources/application.prod.yaml
