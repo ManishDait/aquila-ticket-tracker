@@ -1,0 +1,6 @@
+aquila-ui/.gitignore
+aquila-ui/.git
+aquila-ui/dist
+aquila-ui/.angular
+aquila-ui/node_modules
+aquila-ui/node
