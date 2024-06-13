@@ -1,0 +1,17 @@
+{"properties": [
+  {
+    "name": "app.default.username",
+    "type": "java.lang.String",
+    "description": "Default Admin username for application"
+  },
+  {
+    "name": "app.default.password",
+    "type": "java.lang.String",
+    "description": "Default Admin password for application"
+  },
+  {
+    "name": "app.default.email",
+    "type": "java.lang.String",
+    "description": "Default Admin email for application"
+  }
+]}

@@ -18,3 +18,9 @@ spring:
   mail:
     host: mailhog
     port: 1025
+
+app:
+  default:
+    username: Admin
+    password: Password
+    email: admin101@aquila.demo
