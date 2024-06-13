@@ -1,5 +1,6 @@
 package io.github.manishdait.aquila.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,8 +20,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import io.github.manishdait.aquila.auth.jwt.JwtFilter;
 import io.github.manishdait.aquila.users.UserService;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
@@ -37,10 +36,12 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain (HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable());
         http.authorizeHttpRequests(
-            request -> request.requestMatchers("/aquila-api/auth/**", "/aquila-api/activate/**")
-            .permitAll()
-            .anyRequest()
-            .authenticated()
+            request -> {
+                request.requestMatchers("/aquila-api/user/**", "/aquila-api/project/**", "/aquila-api/comment/**", "/aquila-api/ticket/**")
+                .authenticated()
+                .anyRequest()
+                .permitAll();
+            }
         );
         http.sessionManagement(
             session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
